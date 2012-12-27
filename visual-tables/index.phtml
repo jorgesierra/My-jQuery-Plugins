@@ -78,7 +78,7 @@
             }
             .dropdown-options select {
                 display:inline-block; 
-                width:80px; 
+                width:90px; 
                 border:0px dotted grey;
                 margin-top:0px;
                 margin-bottom: 0px;
@@ -91,6 +91,27 @@
                 width:50px;
                 padding: 2px;
                 margin-bottom: 0px;
+            }
+            .bs-docs-example:after {
+                background-color: #F5F5F5;
+                border: 1px solid #DDDDDD;
+                border-radius: 4px 0 4px 0;
+                color: #9DA0A4;
+                content: "Example";
+                font-size: 12px;
+                font-weight: bold;
+                left: -1px;
+                padding: 3px 7px;
+                position: absolute;
+                top: -1px;
+            }
+            .bs-docs-example {
+                background-color: #FFFFFF;
+                border: 1px solid #DDDDDD;
+                border-radius: 4px 4px 4px 4px;
+                margin: 15px 0;
+                padding: 39px 19px 14px;
+                position: relative;
             }
         </style>
 
@@ -111,93 +132,108 @@
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span12">
-                    <div class="well">
-                        <h2 id="body-copy">Options</h2>
-                    </div>
-                    <table class="table table-bordered visualized">
-                        <thead>
-                          <tr>
-                            <th style="width:8em"></th>
-                            <th>Monday</th>
-                            <th>Tuesday</th>
-                            <th>Wednesday</th>
-                            <th>Thursday</th>
-                            <th>Friday</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>Moe</th>
-                            <td>1</td>
-                            <td>45</td>
-                            <td>8</td>
-                            <td>76</td>
-                            <td>15</td>
-                          </tr>
-                          <tr>
-                            <th>Larry</th>
-                            <td>4</td>
-                            <td>15</td>
-                            <td>50</td>
-                            <td>22</td>
-                            <td>34</td>
-                          </tr>
-                          <tr>
-                            <th>Curly</th>
-                            <td>3</td>
-                            <td>60</td>
-                            <td>20</td>
-                            <td>44</td>
-                            <td>68</td>
-                          </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="btn-options">
-                        <button class="btn toggle" type="button">Options</button>
-                        <ul class="dropdown-options">
-                            <li>
-                                <label style="display:inline-block">Type</label>
-                                <select id="select-type">
-                                    <option>bar</option>
-                                    <option>circle</option>
-                                </select>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="divider-title">Filters</li>
-                            <li>
-                                <label style="display:inline-block">Operator</label>
-                                <select id="select-operator">
-                                    <option>none</option>
-                                    <option>=</option>
-                                    <option>&lt;</option>
-                                    <option>&gt;</option>
-                                    <option>&lt;=</option>
-                                    <option>&gt;=</option>
-                                </select>
-                            </li>
-                            <li>
-                                <label style="display:inline-block">Value</label>
-                                <input type="text" id="input-value"></input>
-                                <select id="select-value-type">
-                                    <option>num</option>
-                                    <option>%</option>
-                                </select>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <button class="btn btn-small button-filter" type="button">Apply</button>
-                            </li>
+                    <div>
+                        <h2>Options</h2>
+                        <ul>
+                            <li>Type: bar | circle | disabled</li>
+                            <li>Filter Operator: none | = | < | > | <= | >= </li>
+                            <li>Filter Value Type: numeric | percentage</li>
                         </ul>
+                        <h2>Usage</h2>
+                        <div class="well">
+                            $(".visualized").visualizeTable(
+                                {type: 'bar',filters: [{'operator':'<','value':'50%'}]}
+                            );
+                            <span class="help-block">/*Display bar type filtering values smaller than 50% (half of the biggest value).*/</span>
+                            
+                        </div>
+                    </div>
+                    <div class="bs-docs-example">
+                        <table class="table table-bordered visualized">
+                            <thead>
+                              <tr>
+                                <th style="width:8em"></th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th>Moe</th>
+                                <td>1</td>
+                                <td>45</td>
+                                <td>8</td>
+                                <td>76</td>
+                                <td>15</td>
+                              </tr>
+                              <tr>
+                                <th>Larry</th>
+                                <td>4</td>
+                                <td>15</td>
+                                <td>50</td>
+                                <td>22</td>
+                                <td>34</td>
+                              </tr>
+                              <tr>
+                                <th>Curly</th>
+                                <td>3</td>
+                                <td>60</td>
+                                <td>20</td>
+                                <td>44</td>
+                                <td>68</td>
+                              </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="btn-options">
+                            <button class="btn toggle" type="button">Options</button>
+                            <ul class="dropdown-options">
+                                <li>
+                                    <label style="display:inline-block">Type</label>
+                                    <select id="select-type">
+                                        <option selected>bar</option>
+                                        <option>circle</option>
+                                        <option>disabled</option>
+                                    </select>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="divider-title">Filters</li>
+                                <li>
+                                    <label style="display:inline-block">Operator</label>
+                                    <select id="select-operator">
+                                        <option selected>none</option>
+                                        <option>=</option>
+                                        <option>&lt;</option>
+                                        <option>&gt;</option>
+                                        <option>&lt;=</option>
+                                        <option>&gt;=</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <label style="display:inline-block">Value</label>
+                                    <input type="text" id="input-value"></input>
+                                    <select id="select-value-type">
+                                        <option selected>numeric</option>
+                                        <option>%</option>
+                                    </select>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <button class="btn btn-small button-filter" type="button">Apply</button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="footer">
           <div class="container">
-            <p>Designed and built with all the love in the world by <a target="_blank" href="http://twitter.com/mdo">@mdo</a> and <a target="_blank" href="http://twitter.com/fat">@fat</a>.</p>
-            <p>Code licensed under <a target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
-            <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+            <p>Concept taken from <a target="_blank" href="http://www.geertdedeckere.be/shop/graphup/">jQuery GraphUp</a>.</p>
+            <p>Code <a href="https://github.com/jorgesierra/My-jQuery-Plugins/tree/master/visual-tables">https://github.com/jorgesierra/My-jQuery-Plugins/tree/master/visual-tables</a>.</p>
           </div>
         </footer>  
     </body>

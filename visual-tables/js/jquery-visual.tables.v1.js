@@ -33,6 +33,9 @@ $.fn.visualizeTable = function(options) {
                 case 'bar':
                     jQuery(v).addClass('to-right');
                     break;
+                case 'disabled':
+                    return;
+                    break;
             }
             
             if(!isNaN(val)) {
