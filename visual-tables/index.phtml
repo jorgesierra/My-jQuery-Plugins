@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <title>Visual Tables 1.0</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+        <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+        
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        
+        <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery-visual.tables.v1.js"></script>
+
+        <style>
+            .to-center div {
+                text-align: center;
+            }
+            .to-right .visual-value{
+                float: right;
+            }
+            .footer {
+                background-color: #F5F5F5;
+                border-top: 1px solid #E5E5E5;
+                margin-top: 70px;
+                padding: 30px 0;
+                text-align: center;
+            }
+            .footer p {
+                color: #777777;
+                margin-bottom: 0;
+            }
+            .footer-links {
+                margin: 10px 0;
+            }
+            .footer-links li:first-child {
+                padding-left: 0;
+            }
+            .footer-links li {
+                display: inline;
+                padding: 0 2px;
+            }
+            .dropdown-options {
+                background-clip: padding-box;
+                background-color: #FFFFFF;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                border-radius: 6px 6px 6px 6px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                display: none;
+                left: 0;
+                list-style: none outside none;
+                margin: 2px 0 0;
+                width: 250px;
+                padding: 5px 0;
+                top: 100%;
+                z-index: 1000;
+                padding-left: 10px;
+            }
+            .dropdown-options .divider {
+                background-color: #E5E5E5;
+                border-bottom: 1px solid #FFFFFF;
+                height: 1px;
+                margin: 9px 1px;
+                overflow: hidden;
+            }
+            .dropdown-options li {
+                list-style-type: none;
+            }
+            .dropdown-options label {
+                width: 60px;
+                font-size: 0.9em;
+            }
+            .dropdown-options select {
+                display:inline-block; 
+                width:80px; 
+                border:0px dotted grey;
+                margin-top:0px;
+                margin-bottom: 0px;
+            }
+            .divider-title {
+                font-weight: bold;
+                font-size: 1em;
+            }
+            #input-value {
+                width:50px;
+                padding: 2px;
+                margin-bottom: 0px;
+            }
+        </style>
+
+    </head>
+    <body style="padding-top: 60px">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container">
+              <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a href="./index.html" class="brand">Visual Tables</a>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="well">
+                        <h2 id="body-copy">Options</h2>
+                    </div>
+                    <table class="table table-bordered visualized">
+                        <thead>
+                          <tr>
+                            <th style="width:8em"></th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>Moe</th>
+                            <td>1</td>
+                            <td>45</td>
+                            <td>8</td>
+                            <td>76</td>
+                            <td>15</td>
+                          </tr>
+                          <tr>
+                            <th>Larry</th>
+                            <td>4</td>
+                            <td>15</td>
+                            <td>50</td>
+                            <td>22</td>
+                            <td>34</td>
+                          </tr>
+                          <tr>
+                            <th>Curly</th>
+                            <td>3</td>
+                            <td>60</td>
+                            <td>20</td>
+                            <td>44</td>
+                            <td>68</td>
+                          </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="btn-options">
+                        <button class="btn toggle" type="button">Options</button>
+                        <ul class="dropdown-options">
+                            <li>
+                                <label style="display:inline-block">Type</label>
+                                <select id="select-type">
+                                    <option>bar</option>
+                                    <option>circle</option>
+                                </select>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="divider-title">Filters</li>
+                            <li>
+                                <label style="display:inline-block">Operator</label>
+                                <select id="select-operator">
+                                    <option>none</option>
+                                    <option>=</option>
+                                    <option>&lt;</option>
+                                    <option>&gt;</option>
+                                    <option>&lt;=</option>
+                                    <option>&gt;=</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label style="display:inline-block">Value</label>
+                                <input type="text" id="input-value"></input>
+                                <select id="select-value-type">
+                                    <option>num</option>
+                                    <option>%</option>
+                                </select>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <button class="btn btn-small button-filter" type="button">Apply</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+          <div class="container">
+            <p>Designed and built with all the love in the world by <a target="_blank" href="http://twitter.com/mdo">@mdo</a> and <a target="_blank" href="http://twitter.com/fat">@fat</a>.</p>
+            <p>Code licensed under <a target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+            <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+          </div>
+        </footer>  
+    </body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $(".visualized").visualizeTable(
+            {type: 'bar'}
+        );
+            
+        $("#test").click(function() {
+            $(".visualized").visualizeTable(
+                {filters: [{'operator':'<','value':'50'}]}
+            );
+        });
+
+        $(".toggle").click(function() {
+            $(".dropdown-options").toggle();
+        });
+
+        $(".button-filter").click(function() {
+
+            type = $("#select-type").val();
+            operator = $("#select-operator").val();
+            value = $("#input-value").val();
+            valueType = $("#select-value-type").val();
+
+            var jsonObj = {type:type,filters:[]};
+
+            if(jQuery.trim(value) != "" && !isNaN(value)) {
+                opValue = value;
+                if(valueType=="%") {
+                    opValue+=valueType;
+                }
+
+                jsonObj.filters.push({operator:operator,value:opValue});
+            }
+            //console.log(jsonObj);
+            $(".visualized").visualizeTable(
+                jsonObj
+            );
+        });    
+    });
+</script>
