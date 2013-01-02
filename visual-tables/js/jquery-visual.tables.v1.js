@@ -39,8 +39,9 @@ $.fn.visualizeTable = function(options) {
             }
             
             if(!isNaN(val)) {
-                percentage = calcPercentage(val);
-                if(checkFilters(val, percentage)==true) {
+                percentageObj = calcPercentage(val);
+                percentage = percentageObj.percentage;
+                if(checkFilters(val, percentageObj.value)==true) {
                     cellWidth = jQuery(v).width();
                     cellHeight = jQuery(v).height();
                     nbspWidth = 10;
@@ -99,6 +100,7 @@ $.fn.visualizeTable = function(options) {
                         }
                         
                         if(check == 'percentage') {
+                            console.log(percentageValue,parseInt(v.value)/10,v.value);
                             if(percentageValue >= parseInt(v.value)/10) {
                                 pass = false;
                                 return;
@@ -176,8 +178,11 @@ $.fn.visualizeTable = function(options) {
     
     function calcPercentage(val) {
         maxVal = getMaxValue(cellsValues);
-        percentage = parseInt(Math.ceil(((val*100)/maxVal)/10));
-        return percentage;
+        value = ((val*100)/maxVal)/10;
+        percentage = parseInt(Math.ceil(value));
+
+        returnValues = {percentage: percentage, value: value}
+        return returnValues;
     }
 
     function htmlDecode(value) {
